@@ -16,8 +16,6 @@
 # - tickets -> list
 # - parkingSpaces -> list
 # - currentTicket -> dictionary
-<<<<<<< HEAD
-=======
 
 class ParkingGarage:
     def __init__(self, ticket, space, currentTicket):
@@ -28,30 +26,36 @@ class ParkingGarage:
 
     def takeTicket(self):
         # self.ticket = ticket
-        self.currentTicket = {}
+        # self.currentTicket = {}
         if len(self.ticket) == 0:
             print('There are no more tickets available.')
             
         else:
             open_realestate = self.ticket.pop(0)
             print(f"Park in space {open_realestate}")
-            self.currentTicket[open_realestate] = "You haven't paid"
+            # self.currentTicket = {}
+            self.space.append(open_realestate)
+            self.currentTicket[open_realestate] = "unpaid"
+            if self.currentTicket == {}:
+                return
+            else:
+                print(self.currentTicket)
             # takeTicket -= 1
             
-            self.space.append(open_realestate)
+            # self.space.append(open_realestate)
             
     def payForParking(self):
         
         open_realestate = input("Which space where you in?: ")
 
-        if self.currentTicket[open_realestate] == "You haven't paid":
+        if self.currentTicket[open_realestate] == "unpaid":
             pay = input("Please type 'pay' to pay. ")
             if pay.lower() == 'pay':
-                self.currentTicket[open_realestate] = "paid"
+                self.currentTicket[open_realestate] = 'paid'
                 print("You're all set, have a great day.")
                 
-            else:
-                print("Please type a valid response. pay for your shit")
+        else:
+            print("Please type a valid response.")
         # elif self.currentTicket[open_realestate] == "paid"
 
 
@@ -68,26 +72,42 @@ class ParkingGarage:
 
     def leaveGarage(self):
         
-        leaving = ("Enter your parking space to leave garage: ")
+        leaving = input("Enter your parking space to leave garage: ")
 
-        if self.currentTicket[leaving] == "paid":
+        if self.currentTicket[leaving] == 'paid':
             self.space.remove(leaving)
             self.ticket.append(leaving)
             self.ticket.sort()
             del self.currentTicket[leaving]
+        # elif self.currentTicket[leaving] == {}:
+        #     return "nope"
         else:
             return self.payForParking()
         # elif leaving == 'n':
         
         # else:
-        #     print("Please type a valid response you twat.")
+        #     print("Please type a valid response.")
 
     # def currentTicket(self):
     #     pass
 parking = ['p1','p2','p3','p4','p5','p6','p7','p8','p9']
+
 e_t_parking = ParkingGarage(parking,[],{})
 # paid = 10
 
 def runnit():
-    
->>>>>>> 43ef758c0dc38b6e305ab7fe09f3f1b62592a957
+
+    while True:
+        run = input("Hope you're well today. What would you like to do? park/pay/leave/quit? ")
+        if run.lower() == "park":
+            e_t_parking.takeTicket()
+        elif run.lower() == "pay":
+            e_t_parking.payForParking()
+        elif run.lower() == "leave":
+            e_t_parking.leaveGarage()
+            
+        elif run.lower() == "quit":
+            break
+        else:
+            print("Please type a valid response.")
+runnit()
