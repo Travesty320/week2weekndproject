@@ -16,19 +16,3 @@
 # - tickets -> list
 # - parkingSpaces -> list
 # - currentTicket -> dictionary
-
-class ParkingGarage:
-    def __init__(self, takeTicket, payForParking, leaveGarage):
-        self.takeTicket = takeTicket
-        self.payForParking = payForParking
-        self.leaveGarage = leaveGarage
-
-    def takeTicket(self):
-        self.takeTicket = []
-        for takeTicket in takeTicket == 0:
-            print('There are no more tickets available.')
-            
-        for takeTicket in takeTicket <=9 and takeTicket != 0:
-            self.takeTicket -= 1
-            print('Here is your ticket.')
-        
